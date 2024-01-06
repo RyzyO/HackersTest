@@ -53,7 +53,7 @@
             <img src="HCLOGO.png" alt="Hackers Cup Logo">
         </div>
         <div class="welcome-message">
-            Welcome<br>
+            <br>
         </div>
     </div>
 
@@ -130,7 +130,7 @@
             onValue(userRef, (snapshot) => {
                 const displayName = snapshot.val();
                 if (displayName) {
-                    document.querySelector('.welcome-message').textContent = `Welcome, ${displayName}`;
+                    document.querySelector('.welcome-message').textContent = ``;
                 } else {
                     const name = prompt('Please enter your display name:');
                     if (name && name.trim() !== '') {
