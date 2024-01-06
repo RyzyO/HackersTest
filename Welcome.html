@@ -34,7 +34,7 @@
         }
 
         .details h1 {
-            font-size: 1.5rem; /* Adjust the font size as needed */
+            font-size: 1.25rem; /* Adjust the font size as needed */
             margin-bottom: 10px;
         }
 
@@ -135,9 +135,9 @@
             onValue(hackerRef, (snapshot) => {
                 const hackerNumber = snapshot.val();
                 if (hackerNumber) {
-                    document.getElementById('hacker-number').textContent = `Hacker Number: ${hackerNumber}`;
+                    document.getElementById('hacker-number').textContent = `Hackers Number: ${hackerNumber}`;
                 } else {
-                    document.getElementById('hacker-number').textContent = 'Hacker number not assigned yet.';
+                    document.getElementById('hacker-number').textContent = 'Hackers number not assigned yet.';
                 }
             });
         }
