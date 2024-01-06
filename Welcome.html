@@ -130,7 +130,17 @@
                 }
             });
         }
-
+  function getHackerNumber(user) {
+            const hackerRef = ref(database, `users/${user.uid}/hackerNumber`);
+            onValue(hackerRef, (snapshot) => {
+                const hackerNumber = snapshot.val();
+                if (hackerNumber) {
+                    document.getElementById('hacker-number').textContent = `Hacker Number: ${hackerNumber}`;
+                } else {
+                    document.getElementById('hacker-number').textContent = 'Hacker number not assigned yet.';
+                }
+            });
+        }
         // Check if a user is logged in
         auth.onAuthStateChanged((user) => {
             if (!user) {
@@ -138,6 +148,7 @@
                 window.location.href = 'login.html';
             } else {
                 getDisplayName(user);
+		    getHackerNumber(user);
             }
         });
 
