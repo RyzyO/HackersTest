@@ -12,7 +12,38 @@
 
     <link rel="stylesheet" href="styles.css">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+ <style>
+        /* Style for the hotel information section */
+        .hotel-info {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            margin: 10px;
+            border-radius: 8px;
+			width: 450px;
+        }
 
+        .hotel-photo img {
+            max-width: 200px;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+
+        .details {
+            flex: 1;
+        }
+
+        .details h1 {
+            font-size: 1.5rem; /* Adjust the font size as needed */
+            margin-bottom: 10px;
+        }
+
+        .details p {
+            font-size: 1rem; /* Adjust the font size as needed */
+            margin-bottom: 5px;
+        }
+    </style>
 </head>
 
 <body>
@@ -29,13 +60,23 @@
     <div class="hotel-info">
         <div class="hotel-photo">
             <!-- Replace the 'hotel_photo.jpg' with the actual hotel photo -->
-            <img src="hotel_photo.jpg" alt="Hotel Photo">
+            
         </div>
         <div class="details">
             <!-- Replace these placeholders with the actual hotel information -->
             <h1>Shoalhaven Springs Motel</h1>
             <p>Address: 131 Greenwell Point Road Worrigee NSW 2540</p>
             <p>Contact: (02) 4422 4522 / shoalhaven@springs.com.au</p>
+        </div>
+    </div>
+	 <div class="hotel-info">
+        <div class="hotel-photo">
+            <!-- Replace the 'hotel_photo.jpg' with the actual hotel photo -->
+            
+        </div>
+          <div class="details" id="room-details">
+            <h1>Room Number</h1>
+            <p id="room-number">Loading room number...</p>
         </div>
     </div>
 
@@ -105,13 +146,26 @@
             });
         }
 
+		 function getRoomNumber(user) {
+            const roomRef = ref(database, `users/${user.uid}/roomNumber`);
+            onValue(roomRef, (snapshot) => {
+                const roomNumber = snapshot.val();
+                if (roomNumber) {
+                    document.getElementById('room-number').textContent = `${roomNumber}`;
+                } else {
+                    document.getElementById('room-number').textContent = 'Room number not assigned yet.';
+                }
+            });
+        }
+
         // Check if a user is logged in
         auth.onAuthStateChanged((user) => {
             if (!user) {
                 // Redirect the user to the login page if not logged in
-                window.location.href = 'login.html';
+                window.location.href = 'index.html';
             } else {
                 getDisplayName(user);
+				getRoomNumber(user)
             }
         });
 
