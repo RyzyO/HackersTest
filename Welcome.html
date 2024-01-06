@@ -61,7 +61,7 @@
             
         </div>
           <div class="details" id="room-details">
-            <h1>Welcome to Hackers Cup 24, you are Hacker <p id="hacker-number">Loading hackers number...</p></h1>
+            <h1>Welcome to Hackers Cup 24<p id="hacker-number">Loading hackers number...</p></h1>
           
         </div>
     </div>
@@ -115,13 +115,13 @@
             onValue(userRef, (snapshot) => {
                 const displayName = snapshot.val();
                 if (displayName) {
-                    document.querySelector('.welcome-message').textContent = `Welcome, ${displayName}`;
+                    document.querySelector('.welcome-message').textContent = `${displayName}`;
                 } else {
                     const name = prompt('Please enter your display name:');
                     if (name && name.trim() !== '') {
                         set(userRef, name.trim())
                             .then(() => {
-                                document.querySelector('.welcome-message').textContent = `Welcome ${name.trim()}`;
+                                document.querySelector('.welcome-message').textContent = `${name.trim()}`;
                             })
                             .catch((error) => {
                                 console.error('Error updating display name:', error);
