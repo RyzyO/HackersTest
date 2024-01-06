@@ -42,6 +42,16 @@
             font-size: 1rem; /* Adjust the font size as needed */
             margin-bottom: 5px;
         }
+		
+		 a {
+            text-decoration: none;
+            color: inherit; /* Use the default color */
+        }
+
+        /* Style visited anchor tags */
+        a:visited {
+            color: inherit; /* Use the default color for visited links */
+        }
     </style>
 </head>
 
@@ -66,6 +76,8 @@
         </div>
     </div>
     <div class="grid-container">
+		<div class="grid-item" onclick="navigateTo('score.html')">
+        <strong> Memorabilia</strong> </div>
         <div class="grid-item" onclick="navigateTo('score.html')">
         <strong> Score</strong> </div>
         <div class="grid-item" onclick="navigateTo('register.html')">
