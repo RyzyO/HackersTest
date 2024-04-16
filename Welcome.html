@@ -2,25 +2,25 @@
 <html>
 
 <head>
-	<link rel="icon" type="image/x-icon" href="favicon.png">
-	  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
     <meta charset="utf-8">
     <title>Hackers Cup</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="manifest" href="site.webmanifest" />
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	 <link rel="apple-touch-icon" href="favicon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="favicon.png">
 
     <link rel="stylesheet" href="styles.css">
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-	<style>
- .hotel-info {
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .hotel-info {
             display: flex;
             align-items: center;
             padding: 20px;
             border: 1px solid #ccc;
             margin: 10px;
             border-radius: 8px;
-			width: 300px;
+            width: 300px;
         }
 
         .hotel-photo img {
@@ -42,8 +42,8 @@
             font-size: 1rem; /* Adjust the font size as needed */
             margin-bottom: 5px;
         }
-		
-		 a {
+
+        a {
             text-decoration: none;
             color: inherit; /* Use the default color */
         }
@@ -52,22 +52,48 @@
         a:visited {
             color: inherit; /* Use the default color for visited links */
         }
-		.countdown-box {
-    display: inline-block;
-    text-align: center;
-    margin-right: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 60px; /* Adjust width as needed */
+
+        .countdown-box {
+            display: inline-block;
+            text-align: center;
+            margin-right: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 60px; /* Adjust width as needed */
+        }
+
+        .countdown-box span {
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 0.6rem;
+            margin-top: 5px;
+            color: #555;
+            width: 100%; /* Ensure the label spans the full width */
+        }
+
+     .grid-item {
+    cursor: pointer;
+    border-radius: 12px; /* Add border-radius for rounded corners */
+    padding: 0px; /* Add padding for spacing */
+    margin: 0px; /* Add margin for spacing */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+    transition: background-color 0.3s ease; /* Add transition for hover effect */
+    max-width: 200px; /* Set the maximum width for the grid item */
+    max-height: 200px; /* Set the maximum height for the grid item */
 }
 
-.countdown-label {
-    display: block;
-    font-size: 0.8rem;
-    margin-top: 5px;
-    color: #555;
+.grid-item img {
+    max-width: 100%; /* Ensure the image does not exceed the grid item's width */
+    max-height: 100%; /* Ensure the image does not exceed the grid item's height */
 }
+
+.grid-item:hover {
+    background-color: rgba(255, 255, 255, 0.7); /* Adjust the transparency on hover */
+}
+
 
     </style>
 </head>
@@ -82,64 +108,70 @@
             Welcome<br>
         </div>
     </div>
- <div class="hotel-info">
+    <div class="hotel-info">
         <div class="hotel-photo">
             <!-- Replace the 'hotel_photo.jpg' with the actual hotel photo -->
-            
-        </div>
-          <div class="details" id="room-details">
-            <h1>Welcome to Hackers Cup 24<p id="hacker-number">Loading hackers number...</p></h1>
-          
-        </div>
-	  
 
+        </div>
+        <div class="details" id="room-details">
+            <h1>Welcome to Hackers Cup 24<p id="hacker-number">Loading hackers number...</p></h1>
+
+        </div>
     </div>
-	
-	<div class="details" id="count">
-	 <div id="countdown">
-    <div class="countdown-box">
-        <span id="days">00</span>
-        <span class="countdown-label">Days</span>
+
+    <div id="countdown">
+        <div class="countdown-box">
+            <span id="days" class="countdown-value">00</span>
+            <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-box">
+            <span id="hours" class="countdown-value">00</span>
+            <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-box">
+            <span id="minutes" class="countdown-value">00</span>
+            <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-box">
+            <span id="seconds" class="countdown-value">00</span>
+            <span class="countdown-label">Seconds</span>
+        </div>
     </div>
-    <div class="countdown-box">
-        <span id="hours">00</span>
-        <span class="countdown-label">Hours</span>
-    </div>
-    <div class="countdown-box">
-        <span id="minutes">00</span>
-        <span class="countdown-label">Minutes</span>
-    </div>
-    <div class="countdown-box">
-        <span id="seconds">00</span>
-        <span class="countdown-label">Seconds</span>
-    </div>
-</div>
-		  </div>
+
     <div class="grid-container">
-		<div class="grid-item" onclick="navigateTo('Memorabilia.html')">
-        <strong> Memorabilia</strong> </div>
+        <div class="grid-item" onclick="navigateTo('Memorabilia.html')">
+            <img src="memorabilia_image.png" alt="Memorabilia">
+        </div>
         <div class="grid-item" onclick="navigateTo('score.html')">
-        <strong> Score</strong> </div>
+            <img src="score_image.jpg" alt="Score">
+        </div>
         <div class="grid-item" onclick="navigateTo('register.html')">
-        <strong> Register</strong> </div>
-       <div class="grid-item" onclick="navigateTo('Podcast.html')">
-    <strong> <a href="Podcast.html">Podcast</a></strong> </div>
+            <img src="register_image.jpg" alt="Register">
+        </div>
+        <div class="grid-item" onclick="navigateTo('Podcast.html')">
+            <img src="podcast_image.jpg" alt="Podcast">
+        </div>
         <div class="grid-item" onclick="navigateTo('Payment.html')">
-    <strong> <a href="Payment.html">Payment</a></strong> </div>
-      <div class="grid-item" onclick="navigateTo('Schedule.html')">
-    <strong> <a href="Schedule.html">Schedule</a></strong> </div>
+            <img src="payment_image.jpg" alt="Payment">
+        </div>
+        <div class="grid-item" onclick="navigateTo('Schedule.html')">
+            <img src="schedule_image.jpg" alt="Schedule">
+        </div>
         <div class="grid-item" onclick="navigateTo('Honour.html')">
-    <strong> <a href="Honour.html">Honour Roll</a></strong> </div>
-<div class="grid-item" onclick="navigateTo('Hotel.html')">
-    <strong> <a href="Hotel.html">Hotel</a></strong> </div>
+            <img src="honour_image.jpg" alt="Honour Roll">
+        </div>
+        <div class="grid-item" onclick="navigateTo('Hotel.html')">
+            <img src="hotel_image.jpg" alt="Hotel">
+        </div>
         <div class="grid-item" onclick="navigateTo('venue.html')">
-        <strong> Venue</strong> </div>
+            <img src="venue_image.jpg" alt="Venue">
+        </div>
         <!-- Add more grid items for other links -->
     </div>
-   <div class="sign-out">
-    <button id="sign-out-btn" onclick="leave()">Sign Out</button>
-</div>
-	<script type="module">
+    <div class="sign-out">
+        <button id="sign-out-btn" onclick="leave()">Sign Out</button>
+    </div>
+    <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
         import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
@@ -156,13 +188,12 @@
             measurementId: "G-6E1M14F510"
         };
 
-     const app = initializeApp(firebaseConfig);
+        const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const database = getDatabase();
 
         const auth = getAuth(app);
 
-        // Function to get the user's display name from the database
         function getDisplayName(user) {
             const userRef = ref(database, `users/${user.uid}/displayName`);
             onValue(userRef, (snapshot) => {
@@ -183,7 +214,8 @@
                 }
             });
         }
-  function getHackerNumber(user) {
+
+        function getHackerNumber(user) {
             const hackerRef = ref(database, `users/${user.uid}/hackerNumber`);
             onValue(hackerRef, (snapshot) => {
                 const hackerNumber = snapshot.val();
@@ -194,63 +226,55 @@
                 }
             });
         }
-        // Check if a user is logged in
+
         auth.onAuthStateChanged((user) => {
             if (!user) {
-                // Redirect the user to the login page if not logged in
                 window.location.href = 'index.html.html';
             } else {
                 getDisplayName(user);
-		    getHackerNumber(user);
+                getHackerNumber(user);
             }
         });
 
-        // Function to sign out
         function leave() {
             auth.signOut()
                 .then(() => {
-                    // Sign-out successful.
-                    window.location.href = 'index.html.html'; // Redirect to login page
+                    window.location.href = 'index.html.html';
                 })
                 .catch((error) => {
-                    // An error happened.
                     console.error('Sign Out Error', error);
                 });
         }
 
-        // Add event listener to sign out button
         document.getElementById('sign-out-btn').addEventListener('click', leave);
-		
-		// Function to update the countdown timer
 
-function updateCountdown() {
-    const targetDate = new Date("August 24, 2024 07:00:00 GMT+1000");
-    const currentDate = new Date();
-    const timeDifference = targetDate - currentDate;
+        function updateCountdown() {
+            const targetDate = new Date("August 24, 2024 07:00:00 GMT+1000");
+            const currentDate = new Date();
+            const timeDifference = targetDate - currentDate;
 
-    if (timeDifference < 0) {
-        document.getElementById('countdown').textContent = 'Hackers Cup has begun!';
-        return;
-    }
+            if (timeDifference < 0) {
+                document.getElementById('countdown').textContent = 'Hackers Cup has begun!';
+                return;
+            }
 
-    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-    document.getElementById('days').textContent = padZeroes(days);
-    document.getElementById('hours').textContent = padZeroes(hours);
-    document.getElementById('minutes').textContent = padZeroes(minutes);
-    document.getElementById('seconds').textContent = padZeroes(seconds);
-}
+            document.getElementById('days').textContent = padZeroes(days);
+            document.getElementById('hours').textContent = padZeroes(hours);
+            document.getElementById('minutes').textContent = padZeroes(minutes);
+            document.getElementById('seconds').textContent = padZeroes(seconds);
+        }
 
-function padZeroes(num) {
-    return num < 10 ? '0' + num : num;
-}
+        function padZeroes(num) {
+            return num < 10 ? '0' + num : num;
+        }
 
-updateCountdown();
-setInterval(updateCountdown, 1000);
-
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
     </script>
 </body>
 
