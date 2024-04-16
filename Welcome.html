@@ -52,6 +52,23 @@
         a:visited {
             color: inherit; /* Use the default color for visited links */
         }
+		.countdown-box {
+    display: inline-block;
+    text-align: center;
+    margin-right: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 60px; /* Adjust width as needed */
+}
+
+.countdown-label {
+    display: block;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    color: #555;
+}
+
     </style>
 </head>
 
@@ -72,10 +89,32 @@
         </div>
           <div class="details" id="room-details">
             <h1>Welcome to Hackers Cup 24<p id="hacker-number">Loading hackers number...</p></h1>
-          <p id="countdown"></p>
-
+          
         </div>
+	  
+
     </div>
+	
+	<div class="details" id="count">
+	 <div id="countdown">
+    <div class="countdown-box">
+        <span id="days">00</span>
+        <span class="countdown-label">Days</span>
+    </div>
+    <div class="countdown-box">
+        <span id="hours">00</span>
+        <span class="countdown-label">Hours</span>
+    </div>
+    <div class="countdown-box">
+        <span id="minutes">00</span>
+        <span class="countdown-label">Minutes</span>
+    </div>
+    <div class="countdown-box">
+        <span id="seconds">00</span>
+        <span class="countdown-label">Seconds</span>
+    </div>
+</div>
+		  </div>
     <div class="grid-container">
 		<div class="grid-item" onclick="navigateTo('Memorabilia.html')">
         <strong> Memorabilia</strong> </div>
@@ -185,38 +224,33 @@
 		// Function to update the countdown timer
 
 function updateCountdown() {
-    // Set the target date and time for the countdown
     const targetDate = new Date("August 24, 2024 07:00:00 GMT+1000");
-
-    // Get the current date and time
     const currentDate = new Date();
-
-    // Calculate the difference in milliseconds between the current date and the target date
     const timeDifference = targetDate - currentDate;
 
-    // Check if the target date has passed
     if (timeDifference < 0) {
         document.getElementById('countdown').textContent = 'Hackers Cup has begun!';
         return;
     }
 
-    // Calculate days, hours, minutes, and seconds from milliseconds
     const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
     const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-    // Update the countdown element with the remaining time
-    document.getElementById('countdown').textContent = `Hackers Begins in: ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+    document.getElementById('days').textContent = padZeroes(days);
+    document.getElementById('hours').textContent = padZeroes(hours);
+    document.getElementById('minutes').textContent = padZeroes(minutes);
+    document.getElementById('seconds').textContent = padZeroes(seconds);
 }
 
-// Call the updateCountdown function initially to display the countdown immediately
-updateCountdown();
+function padZeroes(num) {
+    return num < 10 ? '0' + num : num;
+}
 
-// Call the updateCountdown function every second to keep the countdown updated
+updateCountdown();
 setInterval(updateCountdown, 1000);
 
-		
     </script>
 </body>
 
