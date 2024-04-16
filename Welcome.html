@@ -8,6 +8,7 @@
     <title>Hackers Cup</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="manifest" href="site.webmanifest" />
     <meta name="apple-mobile-web-app-capable" content="yes">
+	 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="apple-touch-icon" href="favicon.png">
 
     <link rel="stylesheet" href="styles.css">
@@ -248,37 +249,44 @@
                 });
         }
 
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+
         document.getElementById('sign-out-btn').addEventListener('click', leave);
-
-        function updateCountdown() {
-            const targetDate = new Date("August 24, 2024 07:00:00 GMT+1000");
-            const currentDate = new Date();
-            const timeDifference = targetDate - currentDate;
-
-            if (timeDifference < 0) {
-                document.getElementById('countdown').textContent = 'Hackers Cup has begun!';
-                return;
-            }
-
-            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-
-            document.getElementById('days').textContent = padZeroes(days);
-            document.getElementById('hours').textContent = padZeroes(hours);
-            document.getElementById('minutes').textContent = padZeroes(minutes);
-            document.getElementById('seconds').textContent = padZeroes(seconds);
-        }
-
-        function padZeroes(num) {
-            return num < 10 ? '0' + num : num;
-        }
-
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
+        document.getElementById('exit-button').addEventListener('click', leave);
 		
-		document.getElementById('exit-button').addEventListener('click', leave);
+		   function updateCountdown() {
+        const targetDate = new Date("August 24, 2024 07:00:00 GMT+1000");
+        const currentDate = new Date();
+        const timeDifference = targetDate - currentDate;
+
+        if (timeDifference < 0) {
+            document.getElementById('countdown').textContent = 'Hackers Cup has begun!';
+            return;
+        }
+
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+        document.getElementById('days').textContent = padZeroes(days);
+        document.getElementById('hours').textContent = padZeroes(hours);
+        document.getElementById('minutes').textContent = padZeroes(minutes);
+        document.getElementById('seconds').textContent = padZeroes(seconds);
+    }
+
+    // Function to add leading zeroes to numbers less than 10
+    function padZeroes(num) {
+        return num < 10 ? '0' + num : num;
+    }
+
+    // Initial call to update the countdown timer
+    updateCountdown();
+
+    // Call the updateCountdown function every second
+    setInterval(updateCountdown, 1000);
     </script>
 </body>
 
