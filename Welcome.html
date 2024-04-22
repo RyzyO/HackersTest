@@ -2,6 +2,40 @@
 <html>
 
 <head>
+	<script>
+    // Your existing script code here...
+
+    function toggleSettingsPanel() {
+        const settingsPanel = document.getElementById('settings-panel');
+        settingsPanel.classList.toggle('show');
+    }
+</script>
+	<script>
+    // Your existing script code here...
+
+    function changeWallpaper(option) {
+        var backgroundImageUrl = "";
+
+        if (option === "none") {
+            document.body.style.backgroundImage = "none";
+        } else if (option === "golf1") {
+            backgroundImageUrl = "golf1.jpeg"; // Update with the correct image URL
+        } else if (option === "golf2") {
+            backgroundImageUrl = "golf2.jpg"; // Update with the correct image URL
+        } else if (option === "golf3") {
+            backgroundImageUrl = "golf3.jpg"; // Update with the correct image URL
+        }
+
+        if (option !== "none") {
+            document.body.style.backgroundImage = "url('" + backgroundImageUrl + "')";
+            document.body.style.backgroundRepeat = "no-repeat";
+            document.body.style.backgroundSize = "cover";
+        }
+
+        toggleSettingsPanel(); // Close settings panel after selection
+    }
+</script>
+	
     <link rel="icon" type="image/x-icon" href="favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
     <meta charset="utf-8">
@@ -30,15 +64,17 @@
             border-radius: 8px;
             margin-right: 20px;
         }
-
-        .details {
-            flex: 1;
-        }
-
-        .details h1 {
-            font-size: 1.25rem; /* Adjust the font size as needed */
-            margin-bottom: 10px;
-        }
+.details {
+    flex: 1;
+    background-color: #d3d3d3; /* Set the background color to light gray */
+    border-radius: 12px; /* Increase border radius for larger corners */
+	padding: 10px;
+		}
+       .details {
+    flex: 1;
+    background-color: #FFFFFF; /* Set the background color to light gray */
+    border-radius: 8px; /* Adjust border radius as needed */
+}
 
         .details p {
             font-size: 1rem; /* Adjust the font size as needed */
@@ -59,6 +95,7 @@
             display: inline-block;
             text-align: center;
             margin-right: 10px;
+			
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -99,6 +136,8 @@
         /* Settings cog styles */
         .settings-cog {
             position: fixed;
+			height: 40px;
+				width: 40px;
             bottom: 20px;
             right: 20px;
             cursor: pointer;
@@ -218,11 +257,11 @@
         <button class="wallpaper-option" onclick="changeWallpaper('golf3')">Golf Course 3</button>
     </div>
 
-    <script type="module">
+    <script>
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
         import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-        import { getAuth, signInWithEmailAndPassword,signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyAYat6m3-Lv46vfm6xcHLjTjRDq7NdCxAk",
@@ -297,40 +336,42 @@
             window.location.href = page;
         }
 
-        document.getElementById('sign-out-btn').addEventListener('click', leave);
-        document.getElementById('exit-button').addEventListener('click', leave);
-		
-		   function updateCountdown() {
-        const targetDate = new Date("August 24, 2024 07:00:00 GMT+1000");
-        const currentDate = new Date();
-        const timeDifference = targetDate - currentDate;
-
-        if (timeDifference < 0) {
-            document.getElementById('countdown').textContent = 'Hackers Cup has begun!';
-            return;
+        function toggleSettingsPanel() {
+            const settingsPanel = document.getElementById('settings-panel');
+            settingsPanel.classList.toggle('show');
         }
 
-        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+        function updateCountdown() {
+            const targetDate = new Date("August 24, 2024 07:00:00 GMT+1000");
+            const currentDate = new Date();
+            const timeDifference = targetDate - currentDate;
 
-        document.getElementById('days').textContent = padZeroes(days);
-        document.getElementById('hours').textContent = padZeroes(hours);
-        document.getElementById('minutes').textContent = padZeroes(minutes);
-        document.getElementById('seconds').textContent = padZeroes(seconds);
-    }
+            if (timeDifference < 0) {
+                document.getElementById('countdown').textContent = 'Hackers Cup has begun!';
+                return;
+            }
 
-    // Function to add leading zeroes to numbers less than 10
-    function padZeroes(num) {
-        return num < 10 ? '0' + num : num;
-    }
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-    // Initial call to update the countdown timer
-    updateCountdown();
+            document.getElementById('days').textContent = padZeroes(days);
+            document.getElementById('hours').textContent = padZeroes(hours);
+            document.getElementById('minutes').textContent = padZeroes(minutes);
+            document.getElementById('seconds').textContent = padZeroes(seconds);
+        }
 
-    // Call the updateCountdown function every second
-    setInterval(updateCountdown, 1000);
+        // Function to add leading zeroes to numbers less than 10
+        function padZeroes(num) {
+            return num < 10 ? '0' + num : num;
+        }
+
+        // Initial call to update the countdown timer
+        updateCountdown();
+
+        // Call the updateCountdown function every second
+        setInterval(updateCountdown, 1000);
     </script>
 </body>
 
