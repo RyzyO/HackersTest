@@ -8,12 +8,13 @@
     <title>Hackers Cup</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="manifest" href="site.webmanifest" />
     <meta name="apple-mobile-web-app-capable" content="yes">
-	 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="apple-touch-icon" href="favicon.png">
 
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* Your existing CSS styles */
         .hotel-info {
             display: flex;
             align-items: center;
@@ -95,6 +96,37 @@
             background-color: rgba(255, 255, 255, 0.7); /* Adjust the transparency on hover */
         }
 
+        /* Settings cog styles */
+        .settings-cog {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        /* Settings panel styles */
+        .settings-panel {
+            position: fixed;
+            bottom: 60px;
+            right: 20px;
+            width: 200px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            display: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .settings-panel.show {
+            display: block;
+        }
+
+        .settings-option {
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
 
     </style>
 </head>
@@ -174,6 +206,18 @@
     <div class="sign-out">
         <button id="sign-out-btn" onclick="leave()">Sign Out</button>
     </div>
+
+    <div class="settings-cog" onclick="toggleSettingsPanel()">
+        <img class="settings-cog" src="cog.png" alt="Settings">
+    </div>
+
+    <div id="settings-panel" class="settings-panel">
+        <button class="wallpaper-option" onclick="changeWallpaper('none')">None</button>
+        <button class="wallpaper-option" onclick="changeWallpaper('golf1')">Golf Course 1</button>
+        <button class="wallpaper-option" onclick="changeWallpaper('golf2')">Golf Course 2</button>
+        <button class="wallpaper-option" onclick="changeWallpaper('golf3')">Golf Course 3</button>
+    </div>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
