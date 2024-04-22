@@ -46,10 +46,13 @@
         .hole-image {
             text-align: center;
             margin-bottom: 20px;
+            position: relative; /* Ensure the aspect ratio works properly */
+            width: 100%; /* Ensure the iframe fills its container */
         }
         
-        .hole-image img {
-            max-width: 100%;
+         .hole-image iframe {
+            width: 384px;
+            height: 216px;
             border-radius: 10px;
         }
         
@@ -86,15 +89,16 @@
     </header>
     
     <div class="hole-info">
-        <div class="hole-image">
-			<iframe src="hole_3.mp4" alt="Hole Video"></iframe>
-        </div>
+        
         <div class="hole-details">
             <h1>Hole 3</h1>
             <p>Par: 4</p>
             <p>Distance: 324 yards</p>
             <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             <!-- Add more details about the hole -->
+        </div>
+		<div class="hole-image">
+			<iframe src="hole_3.mp4" alt="Hole Video"></iframe>
         </div>
         <a href="Venue.html" class="back-button">Back to Venue</a>
     </div>
@@ -189,4 +193,3 @@
 </body>
 
 </html>
-
