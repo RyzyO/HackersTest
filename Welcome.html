@@ -2,40 +2,36 @@
 <html>
 
 <head>
-	<script>
-    // Your existing script code here...
-
-    function toggleSettingsPanel() {
-        const settingsPanel = document.getElementById('settings-panel');
-        settingsPanel.classList.toggle('show');
-    }
-</script>
-	<script>
-    // Your existing script code here...
-
-    function changeWallpaper(option) {
-        var backgroundImageUrl = "";
-
-        if (option === "none") {
-            document.body.style.backgroundImage = "none";
-        } else if (option === "golf1") {
-            backgroundImageUrl = "golf1.jpeg"; // Update with the correct image URL
-        } else if (option === "golf2") {
-            backgroundImageUrl = "golf2.jpg"; // Update with the correct image URL
-        } else if (option === "golf3") {
-            backgroundImageUrl = "golf3.jpg"; // Update with the correct image URL
+    <script>
+        function toggleSettingsPanel() {
+            const settingsPanel = document.getElementById('settings-panel');
+            settingsPanel.classList.toggle('show');
         }
+    </script>
+    <script>
+        function changeWallpaper(option) {
+            var backgroundImageUrl = "";
 
-        if (option !== "none") {
-            document.body.style.backgroundImage = "url('" + backgroundImageUrl + "')";
-            document.body.style.backgroundRepeat = "no-repeat";
-            document.body.style.backgroundSize = "cover";
+            if (option === "none") {
+                document.body.style.backgroundImage = "none";
+            } else if (option === "golf1") {
+                backgroundImageUrl = "golf1.jpeg"; // Update with the correct image URL
+            } else if (option === "golf2") {
+                backgroundImageUrl = "golf2.jpg"; // Update with the correct image URL
+            } else if (option === "golf3") {
+                backgroundImageUrl = "golf3.jpg"; // Update with the correct image URL
+            }
+
+            if (option !== "none") {
+                document.body.style.backgroundImage = "url('" + backgroundImageUrl + "')";
+                document.body.style.backgroundRepeat = "no-repeat";
+                document.body.style.backgroundSize = "cover";
+            }
+
+            toggleSettingsPanel(); // Close settings panel after selection
         }
+    </script>
 
-        toggleSettingsPanel(); // Close settings panel after selection
-    }
-</script>
-	
     <link rel="icon" type="image/x-icon" href="favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
     <meta charset="utf-8">
@@ -64,17 +60,13 @@
             border-radius: 8px;
             margin-right: 20px;
         }
-.details {
-    flex: 1;
-    background-color: #d3d3d3; /* Set the background color to light gray */
-    border-radius: 12px; /* Increase border radius for larger corners */
-	padding: 10px;
-		}
-       .details {
-    flex: 1;
-    background-color: #FFFFFF; /* Set the background color to light gray */
-    border-radius: 8px; /* Adjust border radius as needed */
-}
+
+        .details {
+            flex: 1;
+            background-color: #d3d3d3; /* Set the background color to light gray */
+            border-radius: 12px; /* Increase border radius for larger corners */
+            padding: 10px;
+        }
 
         .details p {
             font-size: 1rem; /* Adjust the font size as needed */
@@ -95,7 +87,6 @@
             display: inline-block;
             text-align: center;
             margin-right: 10px;
-			
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -136,8 +127,8 @@
         /* Settings cog styles */
         .settings-cog {
             position: fixed;
-			height: 40px;
-				width: 40px;
+            height: 40px;
+            width: 40px;
             bottom: 20px;
             right: 20px;
             cursor: pointer;
