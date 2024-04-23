@@ -28,6 +28,11 @@
 
             toggleSettingsPanel(); // Close settings panel after selection
         }
+		
+		function navigateTo(page) {
+            window.location.href = page;
+        }
+		
     </script>
 
     <link rel="icon" type="image/x-icon" href="favicon.png">
@@ -336,9 +341,7 @@
                 });
         }
 
-        function navigateTo(page) {
-            window.location.href = page;
-        }
+        
 
         function toggleSettingsPanel() {
             const settingsPanel = document.getElementById('settings-panel');
