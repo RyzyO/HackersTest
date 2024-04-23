@@ -2,38 +2,8 @@
 <html>
 
 <head>
-    <script>
-        function toggleSettingsPanel() {
-            const settingsPanel = document.getElementById('settings-panel');
-            settingsPanel.classList.toggle('show');
-        }
-    </script>
-    <script>
-        function changeWallpaper(option) {
-            var backgroundImageUrl = "";
-
-            if (option === "none") {
-                document.body.style.backgroundImage = "none";
-            } else if (option === "golf1") {
-                backgroundImageUrl = "golf1.jpeg"; // Update with the correct image URL
-            } else if (option === "golf2") {
-                backgroundImageUrl = "golf2.jpg"; // Update with the correct image URL
-            } else if (option === "golf3") {
-                backgroundImageUrl = "golf3.jpg"; // Update with the correct image URL
-            }
-
-            if (option !== "none") {
-                document.getElementById('wallpaper').style.backgroundImage = "url('" + backgroundImageUrl + "')";
-            }
-
-            toggleSettingsPanel(); // Close settings panel after selection
-        }
-		
-		function navigateTo(page) {
-            window.location.href = page;
-        }
-		
-    </script>
+	
+	
 
     <link rel="icon" type="image/x-icon" href="favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
@@ -174,6 +144,13 @@
             background-position: center;
             background-size: cover;
         }
+.welcome-message {
+    text-align: center;
+}
+
+#user-name {
+    text-align: right !important;
+}
 
     </style>
 </head>
@@ -185,9 +162,12 @@
             <!-- Your logo here -->
             <img src="HCLOGO.png" alt="Hackers Cup Logo">
         </div>
-        <div class="welcome-message">
-            Welcome<br>
-        </div>
+         <div class="welcome-message">
+        <p id="user-name">Loading...</p>
+    </div>
+    <div class="hacker-number">
+        <p id="hacker-number">Loading hackers number...</p>
+    </div>
     </div>
     <div class="hotel-info">
         <div class="hotel-photo">
@@ -195,7 +175,7 @@
 
         </div>
         <div class="details" id="room-details">
-            <h1>Welcome to Hackers Cup 24<p id="hacker-number">Loading hackers number...</p></h1>
+           <h1>Welcome to Hackers Cup 24<p>23 - 25 August 2024</p></h1>
 
         </div>
     </div>
@@ -267,7 +247,10 @@
         <button class="wallpaper-option" onclick="changeWallpaper('golf3')">Golf Course 3</button>
     </div>
 
-    <script>
+    
+</body>
+<script type="module">
+   
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
         import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
@@ -290,47 +273,49 @@
 
         const auth = getAuth(app);
 
-        function getDisplayName(user) {
-            const userRef = ref(database, `users/${user.uid}/displayName`);
-            onValue(userRef, (snapshot) => {
-                const displayName = snapshot.val();
-                if (displayName) {
-                    document.querySelector('.welcome-message').textContent = `${displayName}`;
-                } else {
-                    const name = prompt('Please enter your display name:');
-                    if (name && name.trim() !== '') {
-                        set(userRef, name.trim())
-                            .then(() => {
-                                document.querySelector('.welcome-message').textContent = `${name.trim()}`;
-                            })
-                            .catch((error) => {
-                                console.error('Error updating display name:', error);
-                            });
-                    }
-                }
-            });
-        }
 
-        function getHackerNumber(user) {
-            const hackerRef = ref(database, `users/${user.uid}/hackerNumber`);
-            onValue(hackerRef, (snapshot) => {
-                const hackerNumber = snapshot.val();
-                if (hackerNumber) {
-                    document.getElementById('hacker-number').textContent = `Hackers Number: ${hackerNumber}`;
-                } else {
-                    document.getElementById('hacker-number').textContent = 'Hackers number not assigned yet.';
-                }
-            });
-        }
-
-        auth.onAuthStateChanged((user) => {
-            if (!user) {
-                window.location.href = 'index.html.html';
-            } else {
-                getDisplayName(user);
-                getHackerNumber(user);
+       function getDisplayName(user) {
+    const userRef = ref(database, `users/${user.uid}/displayName`);
+    onValue(userRef, (snapshot) => {
+        const displayName = snapshot.val();
+        if (displayName) {
+            document.getElementById('user-name').textContent = displayName;
+        } else {
+            const name = prompt('Please enter your display name:');
+            if (name && name.trim() !== '') {
+                set(userRef, name.trim())
+                    .then(() => {
+                        document.getElementById('user-name').textContent = name.trim();
+                    })
+                    .catch((error) => {
+                        console.error('Error updating display name:', error);
+                    });
             }
-        });
+        }
+    });
+}
+
+function getHackerNumber(user) {
+    const hackerRef = ref(database, `users/${user.uid}/hackerNumber`);
+    onValue(hackerRef, (snapshot) => {
+        const hackerNumber = snapshot.val();
+        if (hackerNumber) {
+            document.getElementById('hacker-number').textContent = hackerNumber;
+        } else {
+            document.getElementById('hacker-number').textContent = 'Hackers number not assigned yet.';
+        }
+    });
+}
+
+auth.onAuthStateChanged((user) => {
+    if (!user) {
+        window.location.href = 'index.html.html';
+    } else {
+        getDisplayName(user);
+        getHackerNumber(user);
+    }
+});
+
 
         function leave() {
             auth.signOut()
@@ -381,6 +366,36 @@
         // Call the updateCountdown function every second
         setInterval(updateCountdown, 1000);
     </script>
-</body>
+    <script>
+        function toggleSettingsPanel() {
+            const settingsPanel = document.getElementById('settings-panel');
+            settingsPanel.classList.toggle('show');
+        }
+    </script>
+    <script>
+        function changeWallpaper(option) {
+            var backgroundImageUrl = "";
 
+            if (option === "none") {
+                document.body.style.backgroundImage = "none";
+            } else if (option === "golf1") {
+                backgroundImageUrl = "golf1.jpeg"; // Update with the correct image URL
+            } else if (option === "golf2") {
+                backgroundImageUrl = "golf2.jpg"; // Update with the correct image URL
+            } else if (option === "golf3") {
+                backgroundImageUrl = "golf3.jpg"; // Update with the correct image URL
+            }
+
+            if (option !== "none") {
+                document.getElementById('wallpaper').style.backgroundImage = "url('" + backgroundImageUrl + "')";
+            }
+
+            toggleSettingsPanel(); // Close settings panel after selection
+        }
+		
+		function navigateTo(page) {
+            window.location.href = page;
+        }
+		
+    </script>
 </html>
