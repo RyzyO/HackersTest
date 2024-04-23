@@ -23,9 +23,7 @@
             }
 
             if (option !== "none") {
-                document.body.style.backgroundImage = "url('" + backgroundImageUrl + "')";
-                document.body.style.backgroundRepeat = "no-repeat";
-                document.body.style.backgroundSize = "cover";
+                document.getElementById('wallpaper').style.backgroundImage = "url('" + backgroundImageUrl + "')";
             }
 
             toggleSettingsPanel(); // Close settings panel after selection
@@ -36,7 +34,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
     <meta charset="utf-8">
     <title>Hackers Cup</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="manifest" href="site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="apple-touch-icon" href="favicon.png">
@@ -157,11 +156,16 @@
             cursor: pointer;
             margin-bottom: 10px;
         }
-		
-		body {
-            background-attachment: fixed;
+
+        /* Fixed position wallpaper */
+        #wallpaper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Ensure the wallpaper is behind other elements */
             background-position: center;
-            background-repeat: no-repeat;
             background-size: cover;
         }
 
@@ -169,7 +173,7 @@
 </head>
 
 <body>
-	<body style="background-image: url('backgroundImageUrl');">
+    <div id="wallpaper"></div> <!-- Wallpaper element -->
     <div class="header">
         <div class="logo">
             <!-- Your logo here -->
@@ -213,33 +217,7 @@
         <button class="grid-item" onclick="navigateTo('Memorabilia.html')">
             <img src="memorabilia_image.png" alt="Memorabilia">
         </button>
-        <div class="grid-item" onclick="navigateTo('score.html')">
-            <img src="score_image1.png" alt="Score">
-        </div>
-        <div class="grid-item" onclick="navigateTo('register.html')">
-            <img src="register_image.png" alt="Register">
-        </div>
-        <div class="grid-item" onclick="navigateTo('Podcast.html')">
-            <img src="podcast_image.png" alt="Podcast">
-        </div>
-        <div class="grid-item" onclick="navigateTo('Payment.html')">
-            <img src="payment_image.png" alt="Payment">
-        </div>
-        <div class="grid-item" onclick="navigateTo('Schedule.html')">
-            <img src="schedule_image.png" alt="Schedule">
-        </div>
-        <div class="grid-item" onclick="navigateTo('Honour.html')">
-            <img src="honour_image.png" alt="Honour Roll">
-        </div>
-        <div class="grid-item" onclick="navigateTo('Hotel.html')">
-            <img src="hotel_image.png" alt="Hotel">
-        </div>
-        <div class="grid-item" onclick="navigateTo('venue.html')">
-            <img src="venue_image.png" alt="Venue">
-        </div>
-        <div class="grid-item" id="exit-button">
-            <img src="exit.png" alt="Sign Out">
-        </div>
+        <!-- Add other grid items here -->
     </div>
     <div class="sign-out">
         <button id="sign-out-btn" onclick="leave()">Sign Out</button>
