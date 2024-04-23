@@ -144,12 +144,19 @@
             background-position: center;
             background-size: cover;
         }
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .welcome-message {
-    text-align: center;
+    /* Keep existing styles */
+    flex: 1; /* This ensures the welcome message takes up remaining space */
 }
 
 #user-name {
-    text-align: right !important;
+    text-align: right; /* Align the user name to the right */
 }
 
     </style>
@@ -163,7 +170,7 @@
             <img src="HCLOGO.png" alt="Hackers Cup Logo">
         </div>
          <div class="welcome-message">
-        <p id="user-name">Loading...</p>
+        <p id="user-name">Loading...<br></p>
     </div>
     <div class="hacker-number">
         <p id="hacker-number">Loading hackers number...</p>
@@ -300,12 +307,13 @@ function getHackerNumber(user) {
     onValue(hackerRef, (snapshot) => {
         const hackerNumber = snapshot.val();
         if (hackerNumber) {
-            document.getElementById('hacker-number').textContent = hackerNumber;
+            document.getElementById('hacker-number').textContent = '  (' + hackerNumber + ')';
         } else {
-            document.getElementById('hacker-number').textContent = 'Hackers number not assigned yet.';
+            document.getElementById('hacker-number').textContent = ' (Hackers number not assigned yet)';
         }
     });
 }
+
 
 auth.onAuthStateChanged((user) => {
     if (!user) {
