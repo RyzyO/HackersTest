@@ -2,9 +2,6 @@
 <html>
 
 <head>
-	
-	
-
     <link rel="icon" type="image/x-icon" href="favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
     <meta charset="utf-8">
@@ -13,13 +10,52 @@
     <link rel="manifest" href="site.webmanifest" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-	<meta name = "viewport" content = "initial-scale = 1.0, user-scalable = no">
+    <meta name="viewport" content="initial-scale = 1.0, user-scalable = no">
     <link rel="apple-touch-icon" href="favicon.png">
 
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-	<style>
-	.navbar {
+
+    <style>
+        /* Your existing CSS styles */
+       .more-panel {
+    position: fixed;
+    bottom: 80px; /* Adjust this value to match the height of your navbar */
+    right: 0;
+    width: 200px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    display: none;
+    z-index: 999; /* Ensure it appears above other elements */
+}
+
+
+        .more-panel ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .more-panel li {
+            padding: 5px 0;
+        }
+
+        .more-panel a {
+            text-decoration: none;
+            color: #333333;
+        }
+
+        .more-panel a:hover {
+            color: #000000;
+        }
+
+        /* Show the more panel when the anchor link is targeted */
+        #more-panel:target {
+            display: block;
+			
+        }
+   .navbar {
             position: fixed;
             bottom: 0;
             left: 0;
@@ -188,6 +224,16 @@
     /* Keep existing styles */
     flex: 1; /* This ensures the welcome message takes up remaining space */
 }
+		
+		#more-link {
+    /* Existing styles */
+    width: 100px; /* Adjust width as needed */
+    height: 40px; /* Adjust height as needed */
+    display: inline-flex; /* Ensure inline display */
+    align-items: center; /* Align items vertically */
+    justify-content: center; /* Align items horizontally */
+}
+
 
 #user-name {
     text-align: right; /* Align the user name to the right */
@@ -197,27 +243,41 @@
 </head>
 
 <body>
-    <div id="wallpaper"></div> <!-- Wallpaper element -->
+   
+
+    
+
     <div class="header">
         <div class="logo">
             <!-- Your logo here -->
             <img src="HCLOGO.png" alt="Hackers Cup Logo">
         </div>
-         <div class="welcome-message">
-        <p id="user-name">Loading...<br></p>
+        <div class="welcome-message">
+            <p id="user-name">Loading...<br></p>
+        </div>
+        <div class="hacker-number">
+            <p id="hacker-number">Loading hackers number...</p>
+        </div>
     </div>
-    <div class="hacker-number">
-        <p id="hacker-number">Loading hackers number...</p>
-    </div>
+ <div id="more-panel" class="more-panel">
+        <ul>
+			<li><a><strong>More</strong></a></li><br>
+            <li><a href="Memorabilia.html">Memorabilia</a></li>
+            <li><a href="score.html">Score</a></li>
+            <li><a href="register.html">Register</a></li>
+			<li><a href="Podcast.html">Podcast</a></li>
+			<li><a href="Honour.html">Honour Roll</a></li>
+				<li><a href="Hotel.html">Hotel</a></li>
+			<li><a href="Venue.html">Venue</a></li>
+            <!-- Add other list items as needed -->
+        </ul>
     </div>
     <div class="hotel-info">
         <div class="hotel-photo">
             <!-- Replace the 'hotel_photo.png' with the actual hotel photo -->
-
         </div>
         <div class="details" id="room-details">
-           <h1>Welcome to Hackers Cup 24<p>23 - 25 August 2024</p></h1>
-
+            <h1>Welcome to Hackers Cup 24<p>23 - 25 August 2024</p></h1>
         </div>
     </div>
 
@@ -286,14 +346,7 @@
         <button class="wallpaper-option" onclick="changeWallpaper('golf3')">Golf Course 3</button>
     </div>
 
-        
-  <br>
-	<br>
-	<br>
-	<br>
-	
-</body>
-<div class="navbar">
+    <div class="navbar">
         <a href="Welcome.html">
             <img src="home-01.png" alt="Home">
             Home
@@ -306,13 +359,35 @@
             <img src="schedule.png" alt="Schedule">
             Schedule
         </a>
-        <a href="#">
-            <img src="more-01.png" alt="More">
-            More
-        </a>
-    </div>
-<script type="module">
-   
+		<a id="more-link" href="#more-panel">
+        <img src="more-01.png" alt="More">
+        More
+    </a>
+    </div><script>// Function to toggle the visibility of the more panel
+function toggleMorePanel() {
+    const morePanel = document.getElementById('more-panel');
+    morePanel.classList.toggle('show');
+}
+
+// Function to close the more panel when clicking anywhere else on the screen
+document.addEventListener('click', function(event) {
+    const moreLink = document.getElementById('more-link');
+    const morePanel = document.getElementById('more-panel');
+    const isClickInsideMoreLink = moreLink.contains(event.target);
+    const isClickInsideMorePanel = morePanel.contains(event.target);
+
+    if (!isClickInsideMoreLink && !isClickInsideMorePanel) {
+        morePanel.classList.remove('show');
+    }
+});
+
+// Function to close the more panel when clicking the "More" link again
+document.getElementById('more-link').addEventListener('click', function(event) {
+    toggleMorePanel();
+});</script>
+
+
+    <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
         import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
@@ -336,49 +411,47 @@
         const auth = getAuth(app);
 
 
-       function getDisplayName(user) {
-    const userRef = ref(database, `users/${user.uid}/displayName`);
-    onValue(userRef, (snapshot) => {
-        const displayName = snapshot.val();
-        if (displayName) {
-            document.getElementById('user-name').textContent = displayName;
-        } else {
-            const name = prompt('Please enter your display name:');
-            if (name && name.trim() !== '') {
-                set(userRef, name.trim())
-                    .then(() => {
-                        document.getElementById('user-name').textContent = name.trim();
-                    })
-                    .catch((error) => {
-                        console.error('Error updating display name:', error);
-                    });
+        function getDisplayName(user) {
+            const userRef = ref(database, `users/${user.uid}/displayName`);
+            onValue(userRef, (snapshot) => {
+                const displayName = snapshot.val();
+                if (displayName) {
+                    document.getElementById('user-name').textContent = displayName;
+                } else {
+                    const name = prompt('Please enter your display name:');
+                    if (name && name.trim() !== '') {
+                        set(userRef, name.trim())
+                            .then(() => {
+                                document.getElementById('user-name').textContent = name.trim();
+                            })
+                            .catch((error) => {
+                                console.error('Error updating display name:', error);
+                            });
+                    }
+                }
+            });
+        }
+
+        function getHackerNumber(user) {
+            const hackerRef = ref(database, `users/${user.uid}/hackerNumber`);
+            onValue(hackerRef, (snapshot) => {
+                const hackerNumber = snapshot.val();
+                if (hackerNumber) {
+                    document.getElementById('hacker-number').textContent = '  (' + hackerNumber + ')';
+                } else {
+                    document.getElementById('hacker-number').textContent = ' (Hackers number not assigned yet)';
+                }
+            });
+        }
+
+        auth.onAuthStateChanged((user) => {
+            if (!user) {
+                window.location.href = 'index.html.html';
+            } else {
+                getDisplayName(user);
+                getHackerNumber(user);
             }
-        }
-    });
-}
-
-function getHackerNumber(user) {
-    const hackerRef = ref(database, `users/${user.uid}/hackerNumber`);
-    onValue(hackerRef, (snapshot) => {
-        const hackerNumber = snapshot.val();
-        if (hackerNumber) {
-            document.getElementById('hacker-number').textContent = '  (' + hackerNumber + ')';
-        } else {
-            document.getElementById('hacker-number').textContent = ' (Hackers number not assigned yet)';
-        }
-    });
-}
-
-
-auth.onAuthStateChanged((user) => {
-    if (!user) {
-        window.location.href = 'index.html.html';
-    } else {
-        getDisplayName(user);
-        getHackerNumber(user);
-    }
-});
-
+        });
 
         function leave() {
             auth.signOut()
@@ -389,8 +462,6 @@ auth.onAuthStateChanged((user) => {
                     console.error('Sign Out Error', error);
                 });
         }
-
-        
 
         function toggleSettingsPanel() {
             const settingsPanel = document.getElementById('settings-panel');
@@ -455,10 +526,11 @@ auth.onAuthStateChanged((user) => {
 
             toggleSettingsPanel(); // Close settings panel after selection
         }
-		
-		function navigateTo(page) {
+
+        function navigateTo(page) {
             window.location.href = page;
         }
-		
     </script>
+</body>
+
 </html>
